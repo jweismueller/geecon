@@ -17,5 +17,9 @@
 			<groupId>com.prodyna.academy.geecon</groupId>
 			<artifactId>geecon-mod-orga-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.prodyna.academy.geecon</groupId>
+			<artifactId>geecon-mod-common-ejb</artifactId>
+		</dependency>
 	</dependencies>
 </project>

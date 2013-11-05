@@ -6,6 +6,8 @@
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="primary">
 		<jta-data-source>java:jboss/datasources/GeeconDS</jta-data-source>
+		<mapping-file>META-INF/named-queries-conference.xml</mapping-file>
+		<mapping-file>META-INF/named-queries-orga.xml</mapping-file>
 		<jar-file>geecon-ear.ear/lib/geecon-mod-common-api.jar</jar-file>
 		<jar-file>geecon-ear.ear/lib/geecon-mod-conference-api.jar</jar-file>
 		<jar-file>geecon-ear.ear/lib/geecon-mod-orga-api.jar</jar-file>

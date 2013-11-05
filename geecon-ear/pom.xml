@@ -25,6 +25,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.prodyna.academy.geecon</groupId>
+			<artifactId>geecon-rest</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.prodyna.academy.geecon</groupId>
 			<artifactId>geecon-web</artifactId>
 			<type>war</type>
 		</dependency>

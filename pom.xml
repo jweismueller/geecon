@@ -18,9 +18,10 @@
 		<module>geecon-mod-conference-ejb</module>
 		<module>geecon-mod-orga-api</module>
 		<module>geecon-mod-orga-ejb</module>
-		<module>geecon-web</module>
 		<module>geecon-parent-api</module>
 		<module>geecon-parent-ejb</module>
+		<module>geecon-rest</module>
+		<module>geecon-web</module>
 	</modules>
 
 	<properties>
@@ -51,6 +52,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.prodyna.academy.geecon</groupId>
+				<artifactId>geecon-mod-common-ejb</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>com.prodyna.academy.geecon</groupId>
 				<artifactId>geecon-mod-conference-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -59,6 +66,12 @@
 				<artifactId>geecon-mod-conference-ejb</artifactId>
 				<version>${project.version}</version>
 				<type>ejb</type>
+			</dependency>
+			<dependency>
+				<groupId>com.prodyna.academy.geecon</groupId>
+				<artifactId>geecon-mod-conference-ejb</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
 			</dependency>
 			<dependency>
 				<groupId>com.prodyna.academy.geecon</groupId>
@@ -73,6 +86,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.prodyna.academy.geecon</groupId>
+				<artifactId>geecon-mod-orga-ejb</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>com.prodyna.academy.geecon</groupId>
 				<artifactId>geecon-parent-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -80,6 +99,12 @@
 				<groupId>com.prodyna.academy.geecon</groupId>
 				<artifactId>geecon-parent-ejb</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.prodyna.academy.geecon</groupId>
+				<artifactId>geecon-rest</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
 			</dependency>
 			<dependency>
 				<groupId>com.prodyna.academy.geecon</groupId>
@@ -100,6 +125,12 @@
 				<version>${version.jboss.bom}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.7.2</version>
+				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
