@@ -1,4 +1,4 @@
-package com.prodyna.academy.geecon.service;
+package com.prodyna.academy.geecon.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

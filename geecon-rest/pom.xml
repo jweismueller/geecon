@@ -3,8 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.prodyna.academy.geecon</groupId>
-		<artifactId>geecon</artifactId>
+		<artifactId>geecon-parent-ejb</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../geecon-parent-ejb/pom.xml</relativePath>
 	</parent>
 	<artifactId>geecon-rest</artifactId>
 	<packaging>war</packaging>
@@ -17,11 +18,6 @@
 		<dependency>
 			<groupId>com.prodyna.academy.geecon</groupId>
 			<artifactId>geecon-mod-orga-ejb</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.ws.rs</groupId>
-			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

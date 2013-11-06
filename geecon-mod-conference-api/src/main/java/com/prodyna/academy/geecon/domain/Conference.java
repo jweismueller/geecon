@@ -32,4 +32,43 @@ public class Conference extends AbstractEntity {
 	@ManyToOne
 	private Room room;
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Calendar getDateFrom() {
+		return dateFrom;
+	}
+
+	public void setDateFrom(Calendar dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public Calendar getDateTill() {
+		return dateTill;
+	}
+
+	public void setDateTill(Calendar dateTill) {
+		this.dateTill = dateTill;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 }
