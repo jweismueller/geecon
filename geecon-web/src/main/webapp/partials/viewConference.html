@@ -1,0 +1,48 @@
+<div>
+    <h4>{{conference.title}}</h4>
+
+    <div>{{conference.description}}</div>
+    <div>{{conference.dateFrom | date:'yyyy-MM-dd'}}</div>
+    <div>{{conference.dateTill | date:'yyyy-MM-dd'}}</div>
+
+    <table ng-controller="ConferenceController" class="table" id="talkTable">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>From</th>
+            <th>Till</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="talk in talkList">
+        <tr>
+            <td>
+                <a popover="{{talk.description}}" popover-trigger="mouseenter" popover-placement="right"
+                   href="#/conference/{{conference.id}}">
+                    {{talk.title}}
+                </a>
+                <span ng-show="loggedin" class="glyphicon glyphicon-edit" ng-click="editTalk(conference.id, talk.id)"
+                      style="cursor:pointer"></span>
+                <span ng-show="loggedin" class="glyphicon glyphicon-trash" ng-click="removeTalk(conference.id, talk.id)"
+                      style="cursor:pointer"></span>
+            </td>
+            <td>
+                {{talk.description}}
+            </td>
+            <td>{{talk.timeFrom}}</td>
+            <td>{{talk.timeTill}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <span ng-show="loggedin" class="glyphicon glyphicon-edit" ng-click="newTalk(conference.id)"
+              style="cursor:pointer"></span> New talk
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#talkTable").popover('hide');
+        });
+    </script>
+
+</div>

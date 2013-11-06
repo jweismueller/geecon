@@ -15,10 +15,10 @@ public class AbstractEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long id = 0L;
 
 	@Version
-	private long version;
+	private long version = 0L;
 
 	public long getId() {
 		return id;
@@ -36,4 +36,27 @@ public class AbstractEntity implements Serializable {
 		this.version = version;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractEntity other = (AbstractEntity) obj;
+		if (id == 0L || other.id == 0L)
+			return super.equals(other);
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }

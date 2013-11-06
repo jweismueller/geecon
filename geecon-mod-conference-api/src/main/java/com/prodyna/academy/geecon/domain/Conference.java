@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,9 +27,6 @@ public class Conference extends AbstractEntity {
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Calendar dateTill;
-
-	@ManyToOne
-	private Room room;
 
 	public String getTitle() {
 		return title;
@@ -62,13 +58,5 @@ public class Conference extends AbstractEntity {
 
 	public void setDateTill(Calendar dateTill) {
 		this.dateTill = dateTill;
-	}
-
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
 	}
 }

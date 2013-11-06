@@ -1,0 +1,24 @@
+<div>
+    <alert ng-show=$parent.showFeedback close="closeAlert()" type=alertType>{{status}}</alert>
+    <table ng-controller="HomeController" class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>From</th>
+            <th>Till</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="conference in conferenceList">
+        <tr>
+            <td>
+                <a href="#/conferences/{{conference.id}}">{{conference.title}}</a>&nbsp;
+                <span ng-show="loggedin" class="glyphicon glyphicon-edit" ng-click="editConference(conference.id)" style="cursor:pointer"></span>
+            </td>
+            <td>{{conference.description}}</td>
+            <td>{{conference.dateFrom | date:'yyyy-MM-dd'}}</td>
+            <td>{{conference.dateTill | date:'yyyy-MM-dd'}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

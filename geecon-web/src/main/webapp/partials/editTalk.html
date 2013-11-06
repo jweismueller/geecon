@@ -1,0 +1,49 @@
+<div class="col-sm-offset-2 col-sm-10">
+    <h4>New Talk for {{conference.title}} conference</h4>
+    <div style="height: 10px"></div>
+</div>
+
+<form name="talkForm" ng-controller="ConferenceController" role="form" class="form-horizontal">
+
+    <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Title:</label>
+
+        <div class="col-sm-10">
+            <input id="title" type="text" required ng-model="talk.title" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description:</label>
+
+        <div class="col-sm-10">
+            <textarea id="description" class="form-control" rows="3" ng-model="talk.description"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dateFrom" class="col-sm-2 control-label">From:</label>
+
+        <div class="col-sm-10">
+            <input type="time" id="dateFrom" required ng-model="talk.timeFrom" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dateTill" class="col-sm-2 control-label">Till:</label>
+
+        <div class="col-sm-10">
+            <input type="time" id="dateTill" required ng-model="talk.timeTill" class="form-control" dateInput>
+        </div>
+    </div>
+
+    <input id="id" type="hidden" ng-model="talk.id"/>
+    <input id="version" type="hidden" ng-model="talk.version"/>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary" ng-click="saveTalk(conference, talk, talkForm)">
+                Save
+            </button>
+        </div>
+    </div>
+
+
+</form>

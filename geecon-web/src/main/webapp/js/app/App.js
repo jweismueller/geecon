@@ -1,34 +1,19 @@
-var geeconApp = angular.module('geeconApp', ['restangular', 'ui.bootstrap'])
-    .config(function ($routeProvider, RestangularProvider, $locationProvider) {
+var geeconApp = angular.module('geeconApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngCookies']);
 
-        RestangularProvider.setBaseUrl('http://localhost:8080/geecon-rest');
-        //RestangularProvider.setBaseUrl("${RestEndpoint}");
-
-        RestangularProvider.setResponseExtractor(function (response, operation, what, url) {
-            var newResponse = response.payload;
-            if (angular.isArray(newResponse)) {
-                angular.forEach(newResponse, function (value, key) {
-                    if (newResponse[key] != undefined) {
-                        newResponse[key].originalElement = angular.copy(value);
-                    }
+geeconApp.directive(
+    'pdDateInput',
+    function(dateFilter) {
+        return {
+            require: 'ngModel',
+            template: '<input type="date">',
+            replace: true,
+            link: function(scope, elm, attrs, ngModelCtrl) {
+                ngModelCtrl.$formatters.unshift(function (modelValue) {
+                    return dateFilter(modelValue, 'yyyy-MM-dd');
                 });
-            } else {
-                if (newResponse != undefined) {
-                    newResponse.originalElement = angular.copy(newResponse);
-                }
+                ngModelCtrl.$parsers.unshift(function(viewValue) {
+                    return new Date(viewValue);
+                });
             }
-            return newResponse;
-        });
-        $routeProvider.when('/home',
-            {
-                templateUrl: 'views/home.html',
-                controller: 'HomeController'
-            });
-        $routeProvider.when('/conferences/:conferenceId',
-            {
-                templateUrl: 'views/conference.html',
-                controller: 'ConferenceController'
-            });
-        $routeProvider.otherwise({redirectTo: '/home'});
+        };
     });
-
