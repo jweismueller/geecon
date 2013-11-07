@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.prodyna.academy.geecon.auditing.AuditField;
+
 @Entity
 @Table(name = "conf_talk")
 public class Talk extends AbstractEntity {
@@ -24,9 +26,11 @@ public class Talk extends AbstractEntity {
 	@Column(length = 1024)
 	private String description;
 
+	@AuditField
 	@Column(length = 5)
 	private String timeFrom;
 
+	@AuditField
 	@Column(length = 5)
 	private String timeTill;
 

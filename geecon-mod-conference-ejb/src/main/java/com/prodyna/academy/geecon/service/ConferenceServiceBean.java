@@ -10,9 +10,14 @@ import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 
+import com.prodyna.academy.geecon.auditing.Audited;
 import com.prodyna.academy.geecon.domain.Conference;
 import com.prodyna.academy.geecon.domain.Talk;
+import com.prodyna.academy.geecon.ops.logging.Logged;
+import com.prodyna.academy.geecon.ops.monitoring.Monitored;
 
+@Logged
+@Monitored
 @Stateless
 public class ConferenceServiceBean implements ConferenceService {
 
@@ -66,6 +71,7 @@ public class ConferenceServiceBean implements ConferenceService {
 	}
 
 	@Override
+	@Audited
 	public void save(long cId, Talk talk) {
 		em.merge(talk);
 	}

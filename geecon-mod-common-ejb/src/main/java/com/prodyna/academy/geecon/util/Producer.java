@@ -1,7 +1,10 @@
 package com.prodyna.academy.geecon.util;
 
+import javax.annotation.Resource;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import javax.jms.ConnectionFactory;
+import javax.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,8 +19,20 @@ public class Producer {
 
 	@Produces
 	public Logger produceLog(InjectionPoint injectionPoint) {
-		return LoggerFactory.getLogger(injectionPoint.getMember()
-				.getDeclaringClass());
+		return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass());
 	}
 
+	@Produces
+	@Resource(mappedName = "java:/ConnectionFactory")
+	private ConnectionFactory connectionFactory;
+
+	@Resource(mappedName = "java:/queue/talkmodified")
+	private Queue queue;
+
+	@Produces
+	public Queue toDestination() {
+		// only producer method works, compare with thread
+		// https://community.jboss.org/thread/213568
+		return queue;
+	}
 }
