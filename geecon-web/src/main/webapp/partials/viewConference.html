@@ -12,6 +12,7 @@
             <th>Description</th>
             <th>From</th>
             <th>Till</th>
+            <th>Room</th>
         </tr>
         </thead>
         <tbody ng-repeat="talk in talkList">
@@ -31,6 +32,7 @@
             </td>
             <td>{{talk.timeFrom}}</td>
             <td>{{talk.timeTill}}</td>
+            <td><a href="#/room/{{talk.room.id}}">{{talk.room.title}}</a></td>
         </tr>
         </tbody>
     </table>

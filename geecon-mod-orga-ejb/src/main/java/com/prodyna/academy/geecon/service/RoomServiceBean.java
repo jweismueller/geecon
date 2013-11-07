@@ -1,10 +1,15 @@
 package com.prodyna.academy.geecon.service;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
+
+import com.prodyna.academy.geecon.domain.Room;
 
 @Stateless
 public class RoomServiceBean implements RoomService {
@@ -18,5 +23,11 @@ public class RoomServiceBean implements RoomService {
 	@Override
 	public String ping() {
 		return this.getClass().getName();
+	}
+
+	@Override
+	public List<Room> listRooms() {
+		TypedQuery<Room> query = em.createNamedQuery("listRooms", Room.class);
+		return query.getResultList();
 	}
 }

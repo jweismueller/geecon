@@ -6,7 +6,6 @@ public class LocationServiceTest {
 
 	@Test
 	public void test() throws Exception {
-
+		// at the moment nothing to do here
 	}
-
 }

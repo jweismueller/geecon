@@ -1,5 +1,8 @@
 package com.prodyna.academy.geecon.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -9,6 +12,7 @@ import javax.persistence.EntityManager;
 import org.slf4j.Logger;
 
 import com.prodyna.academy.geecon.domain.Conference;
+import com.prodyna.academy.geecon.domain.Room;
 import com.prodyna.academy.geecon.domain.Speaker;
 import com.prodyna.academy.geecon.domain.SpeakerAssignment;
 import com.prodyna.academy.geecon.domain.Talk;
@@ -25,10 +29,16 @@ public class TestdataStartup {
 
 	@PostConstruct
 	private void startup() {
-		Speaker s = new Speaker();
-		s.setName("Adam Bien");
-		em.persist(s);
-		//
+		orgaData();
+		conferenceData();
+		log.info("success");
+	}
+
+	private List<Speaker> speaker = new ArrayList<>();
+
+	private List<Room> rooms = new ArrayList<>();
+
+	private void conferenceData() {
 		Conference c = new Conference();
 		c.setTitle("JEECon");
 		c.setDateFrom(CalendarUtil.getCalendar(2013, 3, 4));
@@ -42,11 +52,40 @@ public class TestdataStartup {
 			t.setTitle("Keynote JEE");
 			t.setDescription("Keynote...");
 			t.setConference(c);
+			t.setRoom(rooms.get(0));
 			SpeakerAssignment sp = new SpeakerAssignment();
-			sp.setSpeaker(s);
+			sp.setSpeaker(speaker.get(0));
 			t.getAssignments().add(sp);
 			em.persist(t);
 		}
-		log.info("success");
+	}
+
+	private void orgaData() {
+		{
+			Speaker s = new Speaker();
+			s.setName("Adam Bien");
+			em.persist(s);
+			speaker.add(s);
+		}
+		{
+			Speaker s = new Speaker();
+			s.setName("Stefan Tilkov");
+			em.persist(s);
+			speaker.add(s);
+		}
+		{
+			Room r = new Room();
+			r.setTitle("Entenhausen");
+			r.setCapacity(200);
+			em.persist(r);
+			rooms.add(r);
+		}
+		{
+			Room r = new Room();
+			r.setTitle("XXL Lounge");
+			r.setCapacity(200);
+			em.persist(r);
+			rooms.add(r);
+		}
 	}
 }
