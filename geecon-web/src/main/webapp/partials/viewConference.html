@@ -1,50 +1,52 @@
 <div>
-    <h4>{{conference.title}}</h4>
+    <h4 style="display: inline-block"><a href="#/conferences/{{conference.id}}">{{conference.title}}</a></h4>
+    <span style="margin-left:5px">
+        from  {{conference.dateFrom | date:'dd.MM.yyyy'}}
+        till {{conference.dateTill  | date:'dd.MM.yyyy'}}
+    </span>
 
-    <div>{{conference.description}}</div>
-    <div>{{conference.dateFrom | date:'yyyy-MM-dd'}}</div>
-    <div>{{conference.dateTill | date:'yyyy-MM-dd'}}</div>
+    <div></div>
 
     <table ng-controller="ConferenceController" class="table" id="talkTable">
         <thead>
         <tr>
             <th>Title</th>
-            <th>Description</th>
-            <th>From</th>
-            <th>Till</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Speaker</th>
             <th>Room</th>
         </tr>
         </thead>
         <tbody ng-repeat="talk in talkList">
         <tr>
             <td>
-                <a popover="{{talk.description}}" popover-trigger="mouseenter" popover-placement="right"
-                   href="#/conference/{{conference.id}}">
+                <span popover="{{talk.description}}" popover-trigger="mouseenter" popover-placement="right">
                     {{talk.title}}
-                </a>
+                </span>
+                <br>
                 <span ng-show="loggedin" class="glyphicon glyphicon-edit" ng-click="editTalk(conference.id, talk.id)"
                       style="cursor:pointer"></span>
                 <span ng-show="loggedin" class="glyphicon glyphicon-trash" ng-click="removeTalk(conference.id, talk.id)"
                       style="cursor:pointer"></span>
             </td>
+            <td>{{talk.dateOn | date:'dd.MM.yyyy'}}</td>
+            <td>{{talk.timeFrom}} - {{talk.timeTill}}</td>
             <td>
-                {{talk.description}}
+                <div ng-repeat="assignment in talk.assignments">
+                    <div>
+                        <a href="#/conferences/{{conference.id}}/speaker/{{assignment.speaker.id}}">
+                            {{assignment.speaker.name}}
+                        </a>
+                    </div>
+                </div>
             </td>
-            <td>{{talk.timeFrom}}</td>
-            <td>{{talk.timeTill}}</td>
-            <td><a href="#/room/{{talk.room.id}}">{{talk.room.title}}</a></td>
+            <td><a href="#/conferences/{{conference.id}}/rooms/{{talk.room.id}}">{{talk.room.title}}</a></td>
         </tr>
         </tbody>
     </table>
-    <div>
-        <span ng-show="loggedin" class="glyphicon glyphicon-edit" ng-click="newTalk(conference.id)"
+    <div ng-show="loggedin">
+        <span class="glyphicon glyphicon-edit" ng-click="newTalk(conference.id)"
               style="cursor:pointer"></span> New talk
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#talkTable").popover('hide');
-        });
-    </script>
 
 </div>

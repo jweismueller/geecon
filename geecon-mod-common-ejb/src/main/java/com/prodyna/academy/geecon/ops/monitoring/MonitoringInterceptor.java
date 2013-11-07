@@ -14,7 +14,7 @@ import javax.management.ObjectName;
 import org.slf4j.Logger;
 
 /**
- * Performance interceptrion for collecting performance date and publishing it via JMX.
+ * Interceptor for sending performance data to our MBean.
  * 
  * @author Jürgen Weismüller, PRODYNA AG
  */
@@ -27,9 +27,6 @@ public class MonitoringInterceptor {
 
 	private MonitoringMXBean monitoringMBean;
 
-	/**
-	 * Default constructor which connects to the performance MXBean.
-	 */
 	public MonitoringInterceptor() {
 		MBeanServer ms = ManagementFactory.getPlatformMBeanServer();
 		try {
@@ -37,7 +34,7 @@ public class MonitoringInterceptor {
 			monitoringMBean = MBeanServerInvocationHandler.newProxyInstance(ms, objectName, MonitoringMXBean.class,
 					false);
 		} catch (Exception e) {
-			log.error("Unable to register MBeans");
+			log.error("Error while getting proxy instance of " + MonitoringMXBean.OBJECT_NAME, e);
 		}
 	}
 
@@ -46,8 +43,8 @@ public class MonitoringInterceptor {
 		long start = System.currentTimeMillis();
 		Object proceed = ic.proceed();
 		Method method = ic.getMethod();
-		monitoringMBean.report(method.getDeclaringClass().getName(), method.getName(), System.currentTimeMillis()
-				- start);
+		long time = System.currentTimeMillis() - start;
+		monitoringMBean.report(method.getDeclaringClass().getName(), method.getName(), time);
 		return proceed;
 	}
 }

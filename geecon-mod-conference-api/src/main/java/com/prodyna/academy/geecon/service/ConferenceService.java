@@ -30,6 +30,9 @@ public interface ConferenceService {
 	@Path("/{cId}")
 	public Conference getConference(@PathParam("cId") long id);
 
+	//
+	// TALKS
+	//
 	@GET
 	@Path("/{cId}/talks")
 	public List<Talk> listTalks(@PathParam("cId") long id);
@@ -45,4 +48,18 @@ public interface ConferenceService {
 	@POST
 	@Path("/{cId}/talks")
 	public void save(@PathParam("cId") long cId, Talk talk);
+
+	//
+	// ROOM ALLOCATION
+	//
+	@GET
+	@Path("/{cId}/rooms/{rId}")
+	public List<Talk> listTalksForRoom(@PathParam("cId") long cId, @PathParam("rId") long rId);
+
+	//
+	// SPEAKER ALLOCATION
+	//
+	@GET
+	@Path("/{cId}/speaker/{sId}")
+	public List<Talk> listTalksForSpeaker(@PathParam("cId") long cId, @PathParam("sId") long sId);
 }

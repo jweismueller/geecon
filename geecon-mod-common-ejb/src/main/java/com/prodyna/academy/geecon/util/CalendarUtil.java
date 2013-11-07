@@ -31,4 +31,28 @@ public class CalendarUtil {
 		cal.set(Calendar.MILLISECOND, 0);
 	}
 
+	public static boolean isCalendarInRangeIncl(Calendar start, Calendar end, Calendar cal) {
+		return isCalendarInRange(start, true, end, true, cal);
+	}
+
+	public static boolean isCalendarInRangeExcl(Calendar start, Calendar end, Calendar cal) {
+		return isCalendarInRange(start, false, end, false, cal);
+	}
+
+	public static boolean isCalendarInRange(Calendar start, boolean startIncl, Calendar end, boolean endIncl,
+			Calendar cal) {
+		if (cal == null) {
+			return false;
+		} else if (cal.before(start)) {
+			return false;
+		} else if (cal.after(end)) {
+			return false;
+		} else if (cal.equals(start)) {
+			return startIncl;
+		} else if (cal.equals(end)) {
+			return endIncl;
+		} else {
+			return true;
+		}
+	}
 }

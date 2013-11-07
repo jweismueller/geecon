@@ -2,6 +2,11 @@ package com.prodyna.academy.geecon.ops.monitoring;
 
 import java.util.List;
 
+/**
+ * Interface for our Monitoring MBean.
+ * 
+ * @author Jürgen Weismüller, PRODYNA AG
+ */
 public interface MonitoringMXBean {
 
 	public static final String OBJECT_NAME = "com.prodyna.academy.geecon:service=Monitoring";
@@ -12,10 +17,9 @@ public interface MonitoringMXBean {
 
 	int getCount();
 
-	MonitoringEntry getWorstMethodByTime();
+	MonitoringEntry getWorstByTime();
 
-	MonitoringEntry getWorstMethodByCount();
+	MonitoringEntry getWorstByCount();
 
 	void reset();
-
 }

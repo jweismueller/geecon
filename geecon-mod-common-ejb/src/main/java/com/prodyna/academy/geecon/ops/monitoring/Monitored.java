@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 import javax.interceptor.InterceptorBinding;
 
 /**
- * Annotated classes will be performance monitored.
+ * Annotated classes will send their performance data to our MonitoringMXBean.
  * 
  * @author Jürgen Weismüller, PRODYNA AG
  */

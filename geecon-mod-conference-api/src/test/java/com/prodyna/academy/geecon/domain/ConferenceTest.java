@@ -9,7 +9,6 @@ public class ConferenceTest {
 	public void test() throws Exception {
 		Conference entity = new Conference();
 		entity.setId(234L);
-		Assert.assertEquals(234L, entity.getId());
+		Assert.assertEquals(Long.valueOf(234L), entity.getId());
 	}
-
 }

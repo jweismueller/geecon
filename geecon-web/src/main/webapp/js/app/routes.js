@@ -16,6 +16,14 @@ var geeconConfig = function ($routeProvider) {
             controller: 'ConferenceController',
             templateUrl: 'partials/viewConference.html'
         })
+        .when('/conferences/:conferenceId/rooms/:roomId', {
+            controller: 'ConferenceController',
+            templateUrl: 'partials/viewConference.html'
+        })
+        .when('/conferences/:conferenceId/speaker/:speakerId', {
+            controller: 'ConferenceController',
+            templateUrl: 'partials/viewConference.html'
+        })
         .when('/editConference/:conferenceId', {
             controller: 'ConferenceController',
             templateUrl: 'partials/editConference.html'

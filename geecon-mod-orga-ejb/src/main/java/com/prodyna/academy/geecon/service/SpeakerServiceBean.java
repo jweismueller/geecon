@@ -10,7 +10,9 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.academy.geecon.domain.Speaker;
+import com.prodyna.academy.geecon.ops.logging.Logged;
 
+@Logged
 @Stateless
 public class SpeakerServiceBean implements SpeakerService {
 
@@ -26,8 +28,13 @@ public class SpeakerServiceBean implements SpeakerService {
 	}
 
 	@Override
-	public List<Speaker> listSpeaker() {
-		TypedQuery<Speaker> query = em.createNamedQuery("listSpeaker", Speaker.class);
+	public List<Speaker> listSpeakers() {
+		TypedQuery<Speaker> query = em.createNamedQuery("listSpeakers", Speaker.class);
 		return query.getResultList();
+	}
+
+	@Override
+	public Speaker getSpeaker(long id) {
+		return em.find(Speaker.class, id);
 	}
 }

@@ -7,7 +7,7 @@
 		<query>SELECT r FROM Room r</query>
 	</named-query>
 
-	<named-query name="listSpeaker">
+	<named-query name="listSpeakers">
 		<query>SELECT s FROM Speaker s ORDER BY s.name</query>
 	</named-query>
 

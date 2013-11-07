@@ -31,7 +31,9 @@ public class TalkModifiedInterceptor {
 		for (Object param : ic.getParameters()) {
 			if (param instanceof Talk) {
 				Talk t = (Talk) param;
-				compareTalk(t);
+				if (t.getId() != null) {
+					compareTalk(t);
+				}
 			}
 		}
 		Object proceed = ic.proceed();
@@ -43,7 +45,10 @@ public class TalkModifiedInterceptor {
 		try {
 			ComapareResponse compare = CompareUtil.compare(t1, t2);
 			if (compare.hasChanges()) {
-				queueAccess.send(compare.getReport());
+				StringBuilder msg = new StringBuilder();
+				msg.append("Talk[" + t1.getId() + "]: ");
+				msg.append(compare.getReport());
+				queueAccess.send(msg.toString());
 			}
 		} catch (Exception e) {
 			log.error("Error at Talk[" + t1.getId() + "]", e);

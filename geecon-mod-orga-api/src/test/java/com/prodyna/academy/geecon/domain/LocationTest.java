@@ -9,7 +9,6 @@ public class LocationTest {
 	public void test() throws Exception {
 		Location entity = new Location();
 		entity.setId(234L);
-		Assert.assertEquals(234L, entity.getId());
+		Assert.assertEquals(Long.valueOf(234L), entity.getId());
 	}
-
 }

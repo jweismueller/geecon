@@ -22,9 +22,9 @@ public class CompareUtil {
 			changes.append("(");
 			changes.append(field.getName());
 			changes.append(": ");
-			changes.append(String.valueOf(o1));
-			changes.append(" -> ");
 			changes.append(String.valueOf(o2));
+			changes.append(" -> ");
+			changes.append(String.valueOf(o1));
 			changes.append(") ");
 		}
 	}

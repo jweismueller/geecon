@@ -17,3 +17,7 @@ geeconApp.directive(
             }
         };
     });
+
+var constants = {
+    "serverAddress": "http://localhost:8080/geecon-rest/"
+}

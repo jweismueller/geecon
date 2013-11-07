@@ -9,7 +9,6 @@ public class AbstractEntityTest {
 	public void test() throws Exception {
 		AbstractEntity entity = new AbstractEntity();
 		entity.setId(234L);
-		Assert.assertEquals(234L, entity.getId());
+		Assert.assertEquals(new Long(234L), entity.getId());
 	}
-
 }

@@ -10,7 +10,9 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.academy.geecon.domain.Room;
+import com.prodyna.academy.geecon.ops.logging.Logged;
 
+@Logged
 @Stateless
 public class RoomServiceBean implements RoomService {
 
@@ -29,5 +31,10 @@ public class RoomServiceBean implements RoomService {
 	public List<Room> listRooms() {
 		TypedQuery<Room> query = em.createNamedQuery("listRooms", Room.class);
 		return query.getResultList();
+	}
+
+	@Override
+	public Room getRoom(long id) {
+		return em.find(Room.class, id);
 	}
 }

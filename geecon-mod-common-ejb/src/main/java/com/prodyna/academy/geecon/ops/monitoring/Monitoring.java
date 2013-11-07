@@ -32,7 +32,7 @@ public class Monitoring implements MonitoringMXBean {
 	}
 
 	@Override
-	public MonitoringEntry getWorstMethodByTime() {
+	public MonitoringEntry getWorstByTime() {
 		MonitoringEntry worstByTime = null;
 		long worstTimeSum = -1;
 		for (MonitoringEntry entry : entries.values()) {
@@ -46,7 +46,7 @@ public class Monitoring implements MonitoringMXBean {
 	}
 
 	@Override
-	public MonitoringEntry getWorstMethodByCount() {
+	public MonitoringEntry getWorstByCount() {
 		MonitoringEntry worstByCount = null;
 		long worstCount = -1;
 		for (MonitoringEntry entry : entries.values()) {
