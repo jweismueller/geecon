@@ -16,6 +16,13 @@
 			</includes>
 		</fileSet>
 		<fileSet>
+			<directory>../</directory>
+			<outputDirectory>/doc</outputDirectory>
+			<includes>
+				<include>*.md</include>
+			</includes>
+		</fileSet>
+		<fileSet>
 			<directory>sql</directory>
 			<outputDirectory>/sql</outputDirectory>
 			<includes>

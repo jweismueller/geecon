@@ -8,15 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 
-import org.slf4j.Logger;
-
 import com.prodyna.academy.geecon.auditing.Audited;
 import com.prodyna.academy.geecon.domain.Conference;
 import com.prodyna.academy.geecon.domain.Talk;
-import com.prodyna.academy.geecon.exception.GeeconValidationException;
 import com.prodyna.academy.geecon.ops.logging.Logged;
 import com.prodyna.academy.geecon.ops.monitoring.Monitored;
-import com.prodyna.academy.geecon.util.CalendarUtil;
 
 @Logged
 @Monitored
@@ -24,7 +20,7 @@ import com.prodyna.academy.geecon.util.CalendarUtil;
 public class ConferenceServiceBean implements ConferenceService {
 
 	@Inject
-	Logger log;
+	private ConferenceValidator conferenceValidator;
 
 	@Inject
 	private EntityManager em;
@@ -76,11 +72,7 @@ public class ConferenceServiceBean implements ConferenceService {
 	@Audited
 	public void save(long cId, Talk talk) {
 		Conference c = getConference(cId);
-		boolean r = CalendarUtil.isCalendarInRangeIncl(c.getDateFrom(), c.getDateTill(), talk.getDateOn());
-		if (!r) {
-			throw new GeeconValidationException("Talk date is out of range.");
-		}
-		// TODO check hours
+		conferenceValidator.validate(c, talk);
 		if (talk.getId() == null) {
 			talk.setConference(c);
 			em.persist(talk);
