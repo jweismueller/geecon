@@ -37,4 +37,13 @@ public class RoomServiceBean implements RoomService {
 	public Room getRoom(long id) {
 		return em.find(Room.class, id);
 	}
+
+	@Override
+	public void save(Room room) {
+		if (room.getId() == null) {
+			em.persist(room);
+		} else {
+			em.merge(room);
+		}
+	}
 }

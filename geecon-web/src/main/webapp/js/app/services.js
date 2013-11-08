@@ -59,7 +59,7 @@ geeconApp.factory('SpeakerService', function ($resource) {
 });
 
 geeconApp.factory('LogonService', function ($resource) {
-    var loggedIn = true;
+    var loggedIn = false;
     return {
         isLoggedIn: function () {
             return loggedIn;
