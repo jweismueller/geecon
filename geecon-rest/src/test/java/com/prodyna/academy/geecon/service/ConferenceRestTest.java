@@ -1,10 +1,13 @@
 package com.prodyna.academy.geecon.service;
 
 import java.net.URL;
+import java.util.List;
 
 import org.jboss.resteasy.client.ProxyFactory;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.prodyna.academy.geecon.domain.Conference;
 
 public class ConferenceRestTest {
 
@@ -14,5 +17,9 @@ public class ConferenceRestTest {
 		URL baseUrl = new URL(p);
 		ConferenceService conferenceService = ProxyFactory.create(ConferenceService.class, baseUrl.toString());
 		Assert.assertNotNull(conferenceService.ping());
+		List<Conference> conferences = conferenceService.listConferences();
+		for (Conference conference : conferences) {
+			System.out.println(conference.getTitle());
+		}
 	}
 }
