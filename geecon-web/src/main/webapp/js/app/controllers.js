@@ -27,7 +27,12 @@ geeconApp.controller('ConferenceController', function ($scope, $location, $route
             $scope.talkList = TalkService.list($routeParams.conferenceId);
         }
         $scope.saveConference = function (conference, form) {
+            //ConferenceService.save(conference, function(data){}, function(result){});
             ConferenceService.save(conference);
+            $location.path("/");
+        };
+        $scope.updateConference = function (conference, form) {
+            console.log("updateConference");
             $location.path("/");
         };
         $scope.editTalk = function (cId, tId) {
@@ -64,7 +69,7 @@ geeconApp.controller('ConferenceController', function ($scope, $location, $route
 );
 
 geeconApp.controller('LoginController', function ($scope, $location, LogonService) {
-    $scope.login = function(form) {
+    $scope.login = function (form) {
         // TODO
     }
     LogonService.login();

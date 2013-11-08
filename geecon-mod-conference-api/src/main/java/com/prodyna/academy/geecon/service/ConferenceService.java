@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -30,6 +31,14 @@ public interface ConferenceService {
 	@Path("/{cId}")
 	public Conference getConference(@PathParam("cId") long id);
 
+	@POST
+	@Path("/")
+	public void save(Conference conference);
+
+	@PUT
+	@Path("/{cId}")
+	public void update(Conference conference);
+
 	//
 	// TALKS
 	//
@@ -40,10 +49,6 @@ public interface ConferenceService {
 	@GET
 	@Path("/{cId}/talks/{tId}")
 	public Talk getTalk(@PathParam("cId") long cId, @PathParam("tId") long tId);
-
-	@POST
-	@Path("/")
-	public void save(Conference conference);
 
 	@POST
 	@Path("/{cId}/talks")

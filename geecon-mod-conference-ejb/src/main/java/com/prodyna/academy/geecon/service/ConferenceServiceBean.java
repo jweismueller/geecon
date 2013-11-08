@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.Logger;
+
 import com.prodyna.academy.geecon.auditing.Audited;
 import com.prodyna.academy.geecon.domain.Conference;
 import com.prodyna.academy.geecon.domain.Talk;
@@ -18,6 +20,9 @@ import com.prodyna.academy.geecon.ops.monitoring.Monitored;
 @Monitored
 @Stateless
 public class ConferenceServiceBean implements ConferenceService {
+
+	@Inject
+	private Logger log;
 
 	@Inject
 	private ConferenceValidator conferenceValidator;
@@ -47,6 +52,17 @@ public class ConferenceServiceBean implements ConferenceService {
 	}
 
 	@Override
+	public void save(Conference conference) {
+		em.merge(conference);
+	}
+
+	@Override
+	public void update(Conference conference) {
+		log.info("got update");
+		em.merge(conference);
+	}
+
+	@Override
 	public List<Talk> listTalks(long cId) {
 		TypedQuery<Talk> query = em.createNamedQuery("listTalks", Talk.class);
 		query.setParameter("cId", cId);
@@ -61,11 +77,6 @@ public class ConferenceServiceBean implements ConferenceService {
 		} else {
 			return t;
 		}
-	}
-
-	@Override
-	public void save(Conference conference) {
-		em.merge(conference);
 	}
 
 	@Override

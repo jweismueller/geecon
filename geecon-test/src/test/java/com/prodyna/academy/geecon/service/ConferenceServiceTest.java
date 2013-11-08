@@ -25,6 +25,8 @@ public class ConferenceServiceTest {
 		WebArchive archive = ShrinkWrap
 				.create(WebArchive.class)
 				//
+				// add named queries: addAsResource( new File("../geecon-mod-orga-ejb/.........") )
+				//
 				.addPackages(true, "com.prodyna.academy.geecon")
 				.addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
 				.addAsResource("META-INF/test-beans.xml", "META-INF/beans.xml")

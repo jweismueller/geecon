@@ -10,11 +10,11 @@
 	<named-query name="listTalks">
 		<query>SELECT t FROM Talk t WHERE t.conference.id=:cId ORDER BY t.dateOn, t.timeFrom</query>
 	</named-query>
-	
+
 	<named-query name="listTalksForRoom">
-		<query>SELECT t FROM Talk t WHERE t.conference.id=:cId and t.room.id=:rId ORDER BY t.dateOn, t.timeFrom</query>
+		<query>	SELECT t FROM Talk t WHERE t.conference.id=:cId and t.room.id=:rId ORDER BY t.dateOn, t.timeFrom</query>
 	</named-query>
-	
+
 	<named-query name="listTalksForSpeaker">
 		<query>SELECT t FROM Talk t JOIN FETCH t.assignments a WHERE t.conference.id=:cId and a.speaker.id=:sId ORDER BY t.dateOn, t.timeFrom</query>
 	</named-query>
